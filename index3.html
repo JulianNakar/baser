@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Brewery Project</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/app3.js"></script>
+    
+</head>
+
+<body background="pictures/woodbackground.jpg">
+    <header id="masthead">
+        <section id="middlesection">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" id="newheader">
+                <a class="navbar-brand" id="logo" href="introPage.html">On Tap</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Beer <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index3.html">Brewery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="modalPage.html">Beer Info</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+    </header>
+
+    <div class="card text-center" id="cardForm">
+        <div class="card-header">
+            <p></p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Enter Location!</label>
+                    <input type="text" class="form-control" id="getLocalBreweries" aria-describedby="emailHelp"
+                        placeholder="">
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                </div>
+                <div class="form-group form-check">
+                </div>
+                <button id="getLocalBreweriesBTN" type="submit" class="btn btn-primary">Tap</button>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div >
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>
+                                <i class="fa fa-table"></i>Results</strong>
+                        </div>
+                        <div class="card-body" id="infoSection2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                
+    <div id="map"></div>
+    <script>
+        var map;
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 40.397, lng: -74.644 },
+                zoom: 8,
+                styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+            });
+
+            google.maps.event.addListener(map, 'click',
+                function (event) {
+                    addMarker({ coordinates: event.latLng });
+                });
+
+            var markers = [
+                {
+                    coordinates: { lat: 40.0, lng: -74.0 },
+                    content: '<h1>Brewery</h1>',
+                },
+                { coordinates: { lat: 40.2, lng: -74.56 } },
+
+            ];
+
+            for (i = 0; i < markers.length; i++) {
+                addMarker(markers[i]);
+            }
+
+            function addMarker(props) {
+                var marker = new google.maps.Marker({
+                    position: props.coordinates,
+                    map: map,
+                });
+                if (props.content) {
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: props.content
+                    });
+
+                    marker.addListener('click', function () {
+                        infoWindow.open(map, marker);
+                    });
+
+                }
+            };
+        };
+
+    </script>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0X5NQfT5WGSrCPeonIM9t4ByX7TgO1JY&callback=initMap" async
+    defer></script>
+
+</html>
